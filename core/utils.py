@@ -13,9 +13,9 @@ class Utils(object):
     def image2kerasarray(img):
         ''' reshape image array 
         Args:
-            img (numpy.ndarray)     : common image array (num_images,height,width(,3))
+            img (numpy.ndarray)     : common image array ((nb_images,)height,width(,3))
         Returns:
-            array (numpy.ndarray)   : keras array (num_images,height,width,channels)
+            array (numpy.ndarray)   : keras array ((nb_images,)height,width,channels)
         '''
         array = img.astype('float32') / 255.
         if array.shape[-1] != 3: ### (num_images, height, width) ###
@@ -95,7 +95,7 @@ class Utils(object):
             Args:
                 dataset_name (str)	: {'mnist', 'cifar10', 'cifar100'}
                 X (numpy.ndarray)	: Image arrays. (nb_images, height, width (, 3))
-                h (numpy.ndarray)	: Latent vectors (nb_images, nb_classes)
+                H (numpy.ndarray)	: Latent vectors (nb_images, nb_classes)
                 batch_size (int)	: minibatch size that generator yields at once
         '''
         from keras.utils import np_utils
@@ -158,13 +158,13 @@ class Utils(object):
     @classmethod
     def build_data_generator_from_directory(
         cls,
-        data_paths,
         target_size,
-        batch_size=25):
+        data_paths,
+        batch_size=100):
         ''' kerasarray generator without keras ImageDataGenerator
             Args:
-                data_paths (list(str))      : ["/path/to/image001.jpg", "/path/to/image002.jpg", ...]
                 target_size (int,int)       : (height, width) pixels of image
+                data_paths (list(str))      : ["/path/to/image001.jpg", "/path/to/image002.jpg", ...]
                 batch_size (int)            : minibatch size that generator yields at once
         '''
         while 1:
@@ -186,7 +186,6 @@ class Utils(object):
     def binarize_val(pred):
        ''' probability -> binarized value '''
        return (np.random.uniform(size=1) < pred).astype(np.float32)
-
 
     @staticmethod
     def binarize_array(array):

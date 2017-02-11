@@ -91,14 +91,14 @@ class PixelCNN(object):
         **kwargs):
         '''
         Args:
-            input_size ((int,int))      : (heigh, width) pixels of input images
+            input_size ((int,int))      : (height, width) pixels of input images
             nb_channels (int)           : Number of channels for input images. (1 for grayscale images, 3 for color images)
             conditional (bool)          : if True, use latent vector to model the conditional distribution p(x|h) (default:False)
             latent_dim (int)            : (if conditional==True,) Dimensions for latent vector.
-            nb_pixelcnn_layers (int)    : Number of layers (exept 1st layer and last two ReLu layers). (default:12)
+            nb_pixelcnn_layers (int)    : Number of layers (except last two ReLu layers). (default:13)
             nb_filters (int)            : Number of filters (feature maps) for each layer. (default:128)
-            filter_size_1st ((int, int)): Filter size for the first layer. (default: (7,7))
-            filter_size ((int, int))    : Filter size for the subsequent layers. (default: (3,3))
+            filter_size_1st ((int, int)): Kernel size for the first layer. (default: (7,7))
+            filter_size ((int, int))    : Kernel size for the subsequent layers. (default: (3,3))
             optimizer (str)             : SGD optimizer (default: 'adadelta')
             es_patience (int)           : Number of epochs with no improvement after which training will be stopped (EarlyStopping)
             save_root (str)             : Root directory to which {trained model file, parameter.txt, tensorboard log file} are saved
