@@ -30,7 +30,7 @@ https://github.com/suga93/pixelcnn_keras/issues
 
 
 ## Setup with Docker ##
-This repository contains Dockerfile of execution environment. Docker image is registered using automated build.
+This repository contains Dockerfile of execution environment. Docker image is registered using [automated build](https://hub.docker.com/r/suga93/pixelcnn_keras/).
 
 ### Base Docker Image ###
 * [tensorflow/tensorflow:1.0.0-rc1-devel-gpu-py3] (https://hub.docker.com/r/tensorflow/tensorflow/)
