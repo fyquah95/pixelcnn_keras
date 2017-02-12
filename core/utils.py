@@ -202,7 +202,7 @@ class Utils(object):
         preds = exp_preds / np.sum(exp_preds)
         probas = np.random.multinomial(1, preds, 1)
 
-        return np.argmax(probas)
+        return np.argmax(probas).astype('float32') / 255.
 
 
     @staticmethod

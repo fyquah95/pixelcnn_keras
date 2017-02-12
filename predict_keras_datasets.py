@@ -146,10 +146,10 @@ def predict(argv=None):
                     X_pred[:,i,j,k] = sampled_pred
 
     X_pred = np.squeeze(X_pred)
+    X_pred = (255*X_pred).astype(np.uint8)
 
     ### save images ###
     for i in range(nb_images):
-        print(X_pred[i].shape)
         utils.save_generated_image(X_pred[i], 'generated_'+str(i)+'.jpg', save_path)
 
     return (0)
