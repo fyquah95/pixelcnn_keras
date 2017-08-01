@@ -10,8 +10,6 @@ import numpy as np
 from core.layers import PixelCNN
 from core.utils import Utils
 
-from keras.utils.visualize_util import plot
-
 
 def train(argv=None):
     ''' train conditional Gated PixelCNN model 
@@ -81,12 +79,14 @@ def train(argv=None):
         input_size = (32, 32)
         nb_classes = 10
         nb_channels = 3
-    elif dataset_NAME == 'cifar100':
+    elif dataset_name == 'cifar100':
         from keras.datasets import cifar100
         (X_train, h_train), (X_validation, h_validation) = cifar100.load_data()
         input_size = (32, 32)
         nb_classes = 100
         nb_channels = 3
+    else:
+        raise RuntimeError("Missing dataset_name!")
 
     utils = Utils()
 
@@ -142,8 +142,8 @@ def train(argv=None):
         txt_file.write('batch_size\t: %s\n' % batch_size)
         txt_file.write('\n')
     plot_model = strtobool(args.plot_model) if args.plot_model else True
-    if plot_model:
-        plot(pixelcnn.model, to_file=os.path.join(save_root, 'pixelcnn_model.png'))
+    # if plot_model:
+    #     plot(pixelcnn.model, to_file=os.path.join(save_root, 'pixelcnn_model.png'))
 
     if conditional:
         train_generator = utils.build_data_generator_from_keras_datasets(dataset_name, X_train, h_train, batch_size)
